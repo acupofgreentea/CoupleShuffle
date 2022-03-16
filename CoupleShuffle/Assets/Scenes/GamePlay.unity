@@ -231,7 +231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9092704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.53, y: 0, z: 0}
+  m_LocalPosition: {x: 3.53, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 214286620}
@@ -266,9 +266,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyCount: 10
   moneyPrefab: {fileID: 7729536029263352461, guid: b9e4f76889fd4b0448de9112bc894f86, type: 3}
+  moneyText: {fileID: 519020574}
   moneyHolder: {fileID: 214286620}
   target: {fileID: 1555444917}
-  moneyText: {fileID: 519020574}
   moneyList: []
 --- !u!1 &62418278
 GameObject:
@@ -438,7 +438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116440858}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.7, y: 0, z: 0}
+  m_LocalPosition: {x: 7.7, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1555444917}
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyCount: 10
   moneyPrefab: {fileID: 7729536029263352461, guid: b9e4f76889fd4b0448de9112bc894f86, type: 3}
+  moneyText: {fileID: 1779807374}
   moneyHolder: {fileID: 1555444917}
   target: {fileID: 214286620}
-  moneyText: {fileID: 1779807374}
   moneyList: []
 --- !u!1 &214286619
 GameObject:
@@ -1181,7 +1181,7 @@ GameObject:
   - component: {fileID: 852838173}
   - component: {fileID: 852838176}
   m_Layer: 5
-  m_Name: left (1)
+  m_Name: right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

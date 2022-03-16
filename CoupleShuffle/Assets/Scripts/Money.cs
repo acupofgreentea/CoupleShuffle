@@ -4,21 +4,30 @@ public class Money : MonoBehaviour
 {
     private float speed;
 
-    [SerializeField] private Transform endPos = null;
+    private Vector3 endPos;
+
+    private void Awake() 
+    {
+        endPos = transform.position;
+    }
 
     private void Update() 
     {
         if(endPos == null) return;
 
-        var dist = Vector3.Distance(transform.position, endPos.position);
+        var dist = Vector3.Distance(transform.position, endPos);
 
         if(dist >= 0.5f)
         {
             MoveMoney();
         }
+        else
+        {
+            speed = 0;
+        }
     }
 
-    public void SetPosition(Transform endPos)
+    public void SetPosition(Vector3 endPos)
     {
         this.endPos = endPos;
     }
@@ -29,6 +38,6 @@ public class Money : MonoBehaviour
 
         speed = speed % 1f;
 
-        transform.position = MathParabola.Parabola(transform.position, endPos.position, 2f, speed);
+        transform.position = MathParabola.Parabola(transform.position, endPos, 1f, speed);
     }
 }

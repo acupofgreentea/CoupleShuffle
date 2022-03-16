@@ -38,9 +38,13 @@ public class GameManager : MonoBehaviour
             rightPlayer.MoneyCount++;
             leftPlayer.MoneyCount--;
 
-            rightPlayer.moneyList.Add(leftPlayer.moneyList[leftPlayer.moneyList.Count - 1]);
+            var _money = leftPlayer.moneyList[leftPlayer.moneyList.Count - 1];
 
-            leftPlayer.moneyList.Remove(leftPlayer.moneyList[leftPlayer.moneyList.Count - 1]);
+            _money.SetPosition(leftPlayer.target.position);
+
+            rightPlayer.moneyList.Add(_money);
+
+            leftPlayer.moneyList.Remove(_money);
         }
         
     }
@@ -51,9 +55,13 @@ public class GameManager : MonoBehaviour
             leftPlayer.MoneyCount++;
             rightPlayer.MoneyCount--;
             
-            leftPlayer.moneyList.Add(rightPlayer.moneyList[rightPlayer.moneyList.Count - 1]);
+            var _money = rightPlayer.moneyList[rightPlayer.moneyList.Count - 1];
 
-            rightPlayer.moneyList.Remove(rightPlayer.moneyList[rightPlayer.moneyList.Count - 1]);
+            _money.SetPosition(rightPlayer.target.position);
+            
+            leftPlayer.moneyList.Add(_money);
+
+            rightPlayer.moneyList.Remove(_money);
         }
     }
 
