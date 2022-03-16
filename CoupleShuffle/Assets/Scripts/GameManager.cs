@@ -33,19 +33,27 @@ public class GameManager : MonoBehaviour
 
     public void RaiseRight()
     {
-        if(leftPlayer.Money > 0)
+        if(leftPlayer.MoneyCount > 0)
         {   
-            rightPlayer.Money++;
-            leftPlayer.Money--;   
+            rightPlayer.MoneyCount++;
+            leftPlayer.MoneyCount--;
+
+            rightPlayer.moneyList.Add(leftPlayer.moneyList[leftPlayer.moneyList.Count - 1]);
+
+            leftPlayer.moneyList.Remove(leftPlayer.moneyList[leftPlayer.moneyList.Count - 1]);
         }
         
     }
     public void RaiseLeft()
     {
-        if(rightPlayer.Money > 0)
+        if(rightPlayer.MoneyCount > 0)
         {
-            leftPlayer.Money++;
-            rightPlayer.Money--;
+            leftPlayer.MoneyCount++;
+            rightPlayer.MoneyCount--;
+            
+            leftPlayer.moneyList.Add(rightPlayer.moneyList[rightPlayer.moneyList.Count - 1]);
+
+            rightPlayer.moneyList.Remove(rightPlayer.moneyList[rightPlayer.moneyList.Count - 1]);
         }
     }
 
