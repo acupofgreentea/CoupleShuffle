@@ -10,7 +10,7 @@ public class PlayerMoney : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI moneyText;
     
-    [SerializeField] private Transform moneyHolder;
+    [SerializeField] public Transform moneyHolder;
 
     public Transform target;
 
@@ -24,7 +24,7 @@ public class PlayerMoney : MonoBehaviour
     {
         for (int i = 0; i < MoneyCount; i++)
         {
-            var moneyPos = new Vector3(moneyHolder.position.x, moneyHolder.position.y + yPos, moneyHolder.position.z);
+            var moneyPos = new Vector3(moneyHolder.position.x, moneyHolder.localPosition.y + yPos, moneyHolder.position.z);
 
             var _money = Instantiate(moneyPrefab, moneyPos, Quaternion.identity);
 

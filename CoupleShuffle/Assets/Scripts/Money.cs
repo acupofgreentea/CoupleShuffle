@@ -6,6 +6,8 @@ public class Money : MonoBehaviour
 
     private Vector3 endPos;
 
+    private Vector3 startPos;
+
     private void Awake() 
     {
         endPos = transform.position;
@@ -13,23 +15,27 @@ public class Money : MonoBehaviour
 
     private void Update() 
     {
-        if(endPos == null) return;
-
         var dist = Vector3.Distance(transform.position, endPos);
 
-        if(dist >= 0.5f)
+        if(dist >= 0.05f)
         {
             MoveMoney();
         }
         else
         {
+            transform.position = endPos;
             speed = 0;
         }
     }
 
-    public void SetPosition(Vector3 endPos)
+    public void SetDestination(Vector3 endPos)
     {
         this.endPos = endPos;
+    }
+
+    public void SetPosition(Vector3 startPos)
+    {
+        this.startPos = startPos;
     }
 
     private void MoveMoney()
@@ -38,6 +44,6 @@ public class Money : MonoBehaviour
 
         speed = speed % 1f;
 
-        transform.position = MathParabola.Parabola(transform.position, endPos, 1f, speed);
+        transform.position = MathParabola.Parabola(startPos, endPos, 1f, speed / 1f);
     }
 }

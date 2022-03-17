@@ -35,12 +35,16 @@ public class GameManager : MonoBehaviour
     {
         if(leftPlayer.MoneyCount > 0)
         {   
-            rightPlayer.MoneyCount++;
-            leftPlayer.MoneyCount--;
-
             var _money = leftPlayer.moneyList[leftPlayer.moneyList.Count - 1];
 
-            _money.SetPosition(leftPlayer.target.position);
+            var desiredPosition = new Vector3(leftPlayer.target.position.x, (rightPlayer.MoneyCount - 1) * 0.1f, leftPlayer.target.position.z);
+
+            _money.SetDestination(desiredPosition);
+
+            _money.SetPosition(new Vector3(_money.transform.position.x, _money.transform.position.y * 0.1f, _money.transform.position.z));
+
+            rightPlayer.MoneyCount++;
+            leftPlayer.MoneyCount--;
 
             rightPlayer.moneyList.Add(_money);
 
@@ -52,12 +56,16 @@ public class GameManager : MonoBehaviour
     {
         if(rightPlayer.MoneyCount > 0)
         {
-            leftPlayer.MoneyCount++;
-            rightPlayer.MoneyCount--;
-            
             var _money = rightPlayer.moneyList[rightPlayer.moneyList.Count - 1];
 
-            _money.SetPosition(rightPlayer.target.position);
+            var desiredPosition = new Vector3(rightPlayer.target.position.x, (leftPlayer.MoneyCount - 1) * 0.1f, rightPlayer.target.position.z);
+
+            _money.SetDestination(desiredPosition);
+            
+            _money.SetPosition(new Vector3(_money.transform.position.x, _money.transform.position.y * 0.1f, _money.transform.position.z));
+
+            leftPlayer.MoneyCount++;
+            rightPlayer.MoneyCount--;
             
             leftPlayer.moneyList.Add(_money);
 
