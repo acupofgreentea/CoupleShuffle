@@ -8,7 +8,7 @@ public class PlayerMoney : MonoBehaviour
 
     [SerializeField] private Money moneyPrefab;
 
-   // [SerializeField] private TextMeshProUGUI moneyText;
+   [SerializeField] private TextMeshProUGUI moneyText;
     
     public Transform moneyHolder;
 
@@ -36,7 +36,7 @@ public class PlayerMoney : MonoBehaviour
 
     private void Update() 
     {
-        //moneyText.text = MoneyCount.ToString();
+        moneyText.text = MoneyCount.ToString();
     }
 
 }
