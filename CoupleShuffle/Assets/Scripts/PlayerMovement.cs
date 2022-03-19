@@ -4,8 +4,10 @@ public class PlayerMovement : CharacterMovement
 {
     protected override void Movement()
     {
-        Vector3 movement = new Vector3(0, 0, 1);
+        Vector3 movement = Vector3.forward;
 
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+        //rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+
+        transform.Translate(movement * moveSpeed * Time.deltaTime);
     }
 }

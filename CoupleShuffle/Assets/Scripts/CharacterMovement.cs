@@ -6,12 +6,14 @@ public abstract class CharacterMovement : MonoBehaviour
 
     protected Rigidbody rb;
 
+    public float MoveSpeed {get => moveSpeed; set => moveSpeed = value;}
+
     private void Awake() 
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate() 
+    private void Update() 
     {
         Movement();
     }

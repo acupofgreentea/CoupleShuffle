@@ -8,11 +8,9 @@ public class PlayerMoney : MonoBehaviour
 
     [SerializeField] private Money moneyPrefab;
 
-    [SerializeField] private TextMeshProUGUI moneyText;
+   // [SerializeField] private TextMeshProUGUI moneyText;
     
-    [SerializeField] public Transform moneyHolder;
-
-    public Transform target;
+    public Transform moneyHolder;
 
     public List<Money> moneyList = new List<Money>();
     
@@ -20,15 +18,17 @@ public class PlayerMoney : MonoBehaviour
     
     private float yPos = 0f;
     
-    private void Start() 
+    private void Awake() 
     {
         for (int i = 0; i < MoneyCount; i++)
         {
-            var moneyPos = new Vector3(moneyHolder.position.x, moneyHolder.localPosition.y + yPos, moneyHolder.position.z);
+            var moneyPos = new Vector3(moneyHolder.position.x, moneyHolder.position.y + yPos, moneyHolder.position.z);
 
             var _money = Instantiate(moneyPrefab, moneyPos, Quaternion.identity);
 
             moneyList.Add(_money);
+
+            _money.transform.parent = this.moneyHolder;
 
             yPos += 0.1f;
         }
@@ -36,7 +36,7 @@ public class PlayerMoney : MonoBehaviour
 
     private void Update() 
     {
-        moneyText.text = MoneyCount.ToString();
+        //moneyText.text = MoneyCount.ToString();
     }
 
 }

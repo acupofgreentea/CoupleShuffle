@@ -8,22 +8,26 @@ public class Money : MonoBehaviour
 
     private Vector3 startPos;
 
+    public bool CanMove{get; set;}
+
+    private Vector3 rot;
+
     private void Awake() 
     {
         endPos = transform.position;
     }
 
-    private void Update() 
+    private void FixedUpdate() 
     {
-        var dist = Vector3.Distance(transform.position, endPos);
-
-        if(dist >= 0.05f)
+        if(CanMove && speed <= 1)
         {
             MoveMoney();
         }
-        else
+        else if(speed >= 1)
         {
-            transform.position = endPos;
+            transform.localPosition = new Vector3(transform.localPosition.x, endPos.y, 0); // fixing transferred position
+            transform.eulerAngles = rot;
+            CanMove = false;
             speed = 0;
         }
     }
@@ -33,6 +37,11 @@ public class Money : MonoBehaviour
         this.endPos = endPos;
     }
 
+    public void SetRotateion(Vector3 rot)
+    {
+        this.rot = rot;
+    }
+
     public void SetPosition(Vector3 startPos)
     {
         this.startPos = startPos;
@@ -40,10 +49,10 @@ public class Money : MonoBehaviour
 
     private void MoveMoney()
     {
+        transform.Rotate(rot * Time.deltaTime, Space.Self);
+
         speed += Time.deltaTime;
 
-        speed = speed % 1f;
-
-        transform.position = MathParabola.Parabola(startPos, endPos, 1f, speed / 1f);
+        transform.position = MathParabola.Parabola(startPos, endPos, 1f, speed);
     }
 }
