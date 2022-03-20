@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 
     private float timer;
 
-    private float startTimer = 0.1f;
+    private float startTimer = 0.05f;
+
+    private Vector3 firstPos, endPos;
 
     private void Awake() 
     {
@@ -25,20 +27,40 @@ public class GameManager : MonoBehaviour
     }
 
     private void Update() 
-    {
-        if(timer <= 0)
+    {   
+        if(Input.GetMouseButtonDown(0))
         {
-            if(canRaiseRight)
-                RaiseRight();
-
-            if(canRaiseLeft)
-                RaiseLeft();
-
-            timer = startTimer;
+            firstPos = Input.mousePosition;
         }
-        else
+        else if(Input.GetMouseButton(0))
         {
-            timer -= Time.deltaTime;
+            endPos = Input.mousePosition;
+
+            float farkX = endPos.x - firstPos.x;
+
+            if(timer <= 0)
+            {
+                if(farkX < 0)
+                {
+                    RaiseLeft();
+                }
+                else
+                {
+                    RaiseRight();
+                }
+
+                timer = startTimer;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+            }
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            firstPos = Vector3.zero;
+            endPos = Vector3.zero;
         }
     }
 
@@ -52,7 +74,7 @@ public class GameManager : MonoBehaviour
 
             var desiredPosition = new Vector3(rightPlayer.moneyHolder.position.x, (rightPlayer.MoneyCount - 1) * 0.1f, rightPlayer.moneyHolder.position.z + movementOffset);
 
-            _money.SetRotateion(new Vector3(0, 0, -180));
+            _money.SetRotation(new Vector3(0, 0, -180));
             
             _money.SetDestination(desiredPosition);
 
@@ -79,7 +101,7 @@ public class GameManager : MonoBehaviour
 
             var desiredPosition = new Vector3(leftPlayer.moneyHolder.position.x, (leftPlayer.MoneyCount - 1) * 0.1f, leftPlayer.moneyHolder.position.z + movementOffset);
 
-            _money.SetRotateion(new Vector3(0, 0, 180));
+            _money.SetRotation(new Vector3(0, 0, 180));
             
             _money.SetDestination(desiredPosition);
             
@@ -95,15 +117,4 @@ public class GameManager : MonoBehaviour
             rightPlayer.moneyList.Remove(_money);
         }
     }
-
-    public void CanRaiseRight(bool raise)
-    {
-        canRaiseRight = raise;
-    }
-
-    public void CanRaiseLeft(bool raise)
-    {
-        canRaiseLeft = raise;
-    }
-
 }

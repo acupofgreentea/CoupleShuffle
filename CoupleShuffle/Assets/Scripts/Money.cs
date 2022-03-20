@@ -37,7 +37,7 @@ public class Money : MonoBehaviour
         this.endPos = endPos;
     }
 
-    public void SetRotateion(Vector3 rot)
+    public void SetRotation(Vector3 rot)
     {
         this.rot = rot;
     }
@@ -45,6 +45,11 @@ public class Money : MonoBehaviour
     public void SetPosition(Vector3 startPos)
     {
         this.startPos = startPos;
+    }
+
+    public bool CanTransfer(bool transfer)
+    {
+        return transfer;
     }
 
     private void MoveMoney()

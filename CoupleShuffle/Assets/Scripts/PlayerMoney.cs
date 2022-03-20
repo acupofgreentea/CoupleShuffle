@@ -17,6 +17,8 @@ public class PlayerMoney : MonoBehaviour
     public int MoneyCount {get => moneyCount; set => moneyCount = value;}
     
     private float yPos = 0f;
+
+    private float onSpawnYPos;
     
     private void Awake() 
     {
@@ -61,7 +63,15 @@ public class PlayerMoney : MonoBehaviour
 
         for (int i = 0; i < value; i++)
         {
-            SpawnMoney(moneyList[moneyList.Count - 1].transform.position.y + 0.1f);
+            if(moneyList.Count == 0)
+            {
+                onSpawnYPos = this.moneyHolder.transform.position.y + 0.1f;
+            }
+            else
+            {
+                onSpawnYPos = moneyList[moneyList.Count - 1].transform.position.y + 0.1f;
+            }
+            SpawnMoney(onSpawnYPos);
         }
     }
 
