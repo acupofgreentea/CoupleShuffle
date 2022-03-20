@@ -25,8 +25,8 @@ public class Money : MonoBehaviour
         }
         else if(speed >= 1)
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, endPos.y, 0); // fixing transferred position
-            transform.eulerAngles = rot;
+            transform.localPosition = new Vector3(transform.localPosition.x, endPos.y, 0); // fixing transferred money position
+            transform.eulerAngles = rot; // fixing transferred money position
             CanMove = false;
             speed = 0;
         }

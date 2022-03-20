@@ -22,7 +22,7 @@ public class PlayerMoney : MonoBehaviour
     {
         for (int i = 0; i < MoneyCount; i++)
         {
-            SpawnMoney();
+            SpawnMoney(moneyHolder.transform.position.y + yPos);
         }
     }
 
@@ -31,9 +31,9 @@ public class PlayerMoney : MonoBehaviour
         moneyText.text = MoneyCount.ToString();
     }
 
-    private void SpawnMoney()
+    private void SpawnMoney(float spawnPosY)
     {
-        var moneyPos = new Vector3(moneyHolder.position.x, moneyHolder.position.y + yPos, moneyHolder.position.z);
+        var moneyPos = new Vector3(moneyHolder.position.x, spawnPosY, moneyHolder.position.z);
 
         var _money = Instantiate(moneyPrefab, moneyPos, Quaternion.identity);
 
@@ -50,11 +50,9 @@ public class PlayerMoney : MonoBehaviour
 
         var topMoney = moneyList[moneyList.Count - 1];
 
-        var _money = topMoney.gameObject;
-
         moneyList.Remove(topMoney);
 
-        Destroy(_money);
+        Destroy(topMoney.gameObject);
     }
 
     public void IncreaseMoney(int value)
@@ -63,7 +61,7 @@ public class PlayerMoney : MonoBehaviour
 
         for (int i = 0; i < value; i++)
         {
-            SpawnMoney();
+            SpawnMoney(moneyList[moneyList.Count - 1].transform.position.y + 0.1f);
         }
     }
 
