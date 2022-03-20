@@ -47,11 +47,6 @@ public class Money : MonoBehaviour
         this.startPos = startPos;
     }
 
-    public bool CanTransfer(bool transfer)
-    {
-        return transfer;
-    }
-
     private void MoveMoney()
     {
         transform.Rotate(rot * Time.deltaTime, Space.Self);
